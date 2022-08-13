@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream>
 
-void read_csv()
+void read_csv(std::string filename)
 {
     std::string line;
-    std::ifstream dataFile("Statements_Midata_01-08-22_07-08-22.csv");
+    std::ifstream dataFile(filename);
 
     if (dataFile.is_open())
     {
