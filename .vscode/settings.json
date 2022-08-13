@@ -30,6 +30,7 @@
     "functional": "cpp",
     "sstream": "cpp",
     "tuple": "cpp",
-    "utility": "cpp"
+    "utility": "cpp",
+    "iomanip": "cpp"
   }
 }

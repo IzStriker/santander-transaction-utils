@@ -1,7 +1,10 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "csv.h"
+#include "transaction.h"
+#include "expenditure.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +15,9 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    read_csv(argv[1]);
+    std::vector<transaction> transactions;
+    read_csv(argv[1], transactions);
+    print_expenditure(transactions);
 
     return 0;
 }

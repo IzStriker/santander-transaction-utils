@@ -6,8 +6,8 @@ all: main
 
 # Link files
 
-main: $(OUTDIR) $(OUTDIR)/main.o $(OUTDIR)/csv.o
-	g++ -o $(TARGET) $(OUTDIR)/main.o $(OUTDIR)/csv.o
+main: $(OUTDIR) $(OUTDIR)/main.o $(OUTDIR)/csv.o $(OUTDIR)/expenditure.o
+	g++ -o $(TARGET) $(OUTDIR)/main.o $(OUTDIR)/csv.o $(OUTDIR)/expenditure.o
 
 # Create object files
 
@@ -16,6 +16,9 @@ $(OUTDIR)/main.o: $(SRCDIR)/main.cpp
 
 $(OUTDIR)/csv.o: $(SRCDIR)/csv.cpp
 	g++ -c $(SRCDIR)/csv.cpp -o $(OUTDIR)/csv.o
+
+$(OUTDIR)/expenditure.o: $(SRCDIR)/expenditure.cpp
+	g++ -c $(SRCDIR)/expenditure.cpp -o $(OUTDIR)/expenditure.o
 
 # Create output directory
 $(OUTDIR):

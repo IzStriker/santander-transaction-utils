@@ -6,13 +6,12 @@
 #include "transaction.h"
 #include "csv.h"
 
-std::vector<transaction> read_csv(std::string filename)
+void read_csv(std::string filename, std::vector<transaction> &transactions)
 {
     std::string line;
     std::string delimiter = ";";
     std::string dateFormat = "%d/%m/%Y";
     std::ifstream dataFile(filename);
-    std::vector<transaction> transactions;
 
     if (!dataFile.is_open())
     {
@@ -20,8 +19,6 @@ std::vector<transaction> read_csv(std::string filename)
         // TODO: Throw Exception
         return;
     }
-    std::cout << "File is open" << std::endl
-              << std::endl;
 
     // skip line with table headings
     std::getline(dataFile, line);
@@ -49,34 +46,25 @@ std::vector<transaction> read_csv(std::string filename)
             std::cout << "Error: Invalid date found in csv file." << std::endl;
             return;
         }
-        std::cout << transaction.date.tm_mday << "/" << transaction.date.tm_mon + 1 << "/" << transaction.date.tm_year + 1900 << std::endl;
 
         transaction.paymentType = get_next_token(line, delimiter);
-        std::cout << transaction.paymentType << std::endl;
-
         transaction.merchantDescription = get_next_token(line, delimiter);
-        std::cout << transaction.merchantDescription << std::endl;
 
         token = get_next_token(line, delimiter);
 
         // Remove £ sign from second position
         transaction.amount = std::stod(token.substr(0, 1) + token.substr(2)) * 100;
-        std::cout << transaction.amount << std::endl;
 
         token = get_next_token(line, delimiter);
 
         // Remove £ sign from second position
         transaction.balance = std::stod(token.substr(0, 1) + token.substr(2)) * 100;
-        std::cout << transaction.balance << std::endl;
 
         transactions.push_back(transaction);
     }
-
-    std::cout << "Total Transactions: " << transactions.size() << std::endl;
-
     dataFile.close();
 
-    return transactions;
+    std::cout << "Total Transactions: " << transactions.size() << std::endl;
 }
 
 std::string get_next_token(std::string &line, std::string delimiter)
