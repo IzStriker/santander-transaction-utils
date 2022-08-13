@@ -1,3 +1,6 @@
 *.csv
 *.exe
 *.log
+*.o
+*.txt
+bin/
