@@ -1,27 +1,11 @@
 #include <iostream>
-#include <fstream>
 #include <string>
+
+#include "csv.h"
 
 int main()
 {
-    std::string line;
-    std::ifstream dataFile("Statements_Midata_01-08-22_07-08-22.csv");
+    read_csv();
 
-    if (dataFile.is_open())
-    {
-        std::cout << "File is open" << std::endl
-                  << std::endl;
-
-        while (std::getline(dataFile, line))
-        {
-            std::cout << line << std::endl;
-        }
-    }
-    else
-    {
-        std::cout << "File failed to open" << std::endl;
-    }
-
-    dataFile.close();
     return 0;
 }
